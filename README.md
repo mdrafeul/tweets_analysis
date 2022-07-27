@@ -5,6 +5,7 @@
 
 ## Used Library
 - Python pandas, time, re, request
+- Matplotlib
 - Gensim
 - Spacy 
 - Streamlit
