@@ -4,10 +4,7 @@ import pandas as pd
 
 
 def send_request(access_token, keyword, start_date, end_date):
-    base = "https://api.twitter.com/2/tweets/search/recent"
-    # (Covid-19 OR coronavirus OR covid19 OR Corona OR newcoronavirus)
-    # token = "AAAAAAAAAAAAAAAAAAAAAHRnPgEAAAAAaejNf5uPHgbjZQo8%2FuwdYHmV2OM%3Dfh1bVlRif0vHA3H0Xx5lYGQGEoWYxiyj6zmjmOMknOMmxQ2Gvv"
-    # access_token = 1391770502377742340-4WMyWCLOXGDfxvPJOEyadYdU7rCyB6
+    base = "https://api.twitter.com/2/tweets/search/all"
     query = f"?query=" + keyword + "-is:retweet lang:en"
     max_results = "&max_results=100"
     time_duration = f"&start_time=" + start_date + "T00%3A00%3A00Z&end_time=" + end_date + "T11%3A59%3A59Z"
@@ -27,8 +24,6 @@ def has_next_page(response_json):
 
 def twitter_search(url, access_token):
     token = access_token
-    # token = "AAAAAAAAAAAAAAAAAAAAAHRnPgEAAAAAaejNf5uPHgbjZQo8%2FuwdYHmV2OM%3Dfh1bVlRif0vHA3H0Xx5lYGQGEoWYxiyj6zmjmOMknOMmxQ2Gvv"
-    print(token)
     headers = {"Authorization": f"Bearer {token}"}
     response_json = requests.get(url, headers=headers).json()
     df = pd.DataFrame(response_json['data'])
